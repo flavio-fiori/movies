@@ -39,7 +39,7 @@ npm run dev
 
 Gerar build do projeto: 
 ```
-npm run dev
+npm run build
 ```
 ## Ferramentas
 - NextJs
