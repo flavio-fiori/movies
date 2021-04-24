@@ -15,29 +15,30 @@ export function Table() {
                 movies.length > 0 && 
 
 
-                <Fragment>
-                    
+                <Fragment>                    
 
-                    <Divider marginY="8" borderColor="gray.400" />
+                    <Divider marginY={[6, 6, 8]} borderColor="gray.400" />
+
                     <Flex
-                    justifyContent="space-between"
+                        justifyContent="space-between"
                     >
 
                         <Box
                             flex="1"
                             marginRight="4"
+                            display={['none', 'none', 'block']}
                         >
                             <Image src="/images/movies.png" alt="Ilustração de filme" />
                         </Box>
 
                         <ChakraTable
-                            marginTop="8" 
+                            marginTop={[2, 2, 8]}
                             colorScheme="blackAlpha"
                             maxWidth={600}>
 
                             <Thead>
                                 <Tr>
-                                    <Th></Th>
+                                    <Th display={['none', 'table-cell']}></Th>
                                     <Th>Ano de Lançamento</Th>
                                     <Th>Quantidade de filmes</Th>
                                 </Tr>
@@ -50,7 +51,7 @@ export function Table() {
                                     movies.map(movie => (
 
                                         <Tr key={`year-${movie.year}`}>
-                                            <Td><Icon as={ RiMovie2Line } /></Td>
+                                            <Td display={['none', 'table-cell']}><Icon as={ RiMovie2Line } /></Td>
                                             <Td>{ movie.year }</Td>
                                             <Td>{ movie.movies } filmes</Td>
                                         </Tr>
@@ -63,7 +64,7 @@ export function Table() {
 
                             <Tfoot>
                                 <Tr>
-                                    <Td colSpan="3" textAlign="center">Total: 35</Td>
+                                    <Td colSpan="3" textAlign="center">Total: {movies.total}</Td>
                                 </Tr>
                             </Tfoot>
 

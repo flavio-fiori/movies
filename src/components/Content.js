@@ -16,7 +16,7 @@ export function Content() {
                 width="100%"
                 marginTop="-20"
                 backgroundColor="gray.200"
-                padding="8"
+                padding={[4, 4, 8]}
                 maxWidth={1200}
                 marginX="auto"
                 borderRadius="4"
