@@ -27,6 +27,9 @@ export function Header() {
                 </Text>
 
                 <Button
+                    as="a"
+                    href="https://github.com/flaviofiori/movies"
+                    target="_blank"
                     backgroundColor="gray.700"
                     color="gray.50"
                     _hover={{

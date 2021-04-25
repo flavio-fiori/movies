@@ -4,7 +4,7 @@ const MoviesContext = createContext();
 
 export const MoviesProvider = ({ children }) => {
 
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState({});
 
     const saveMovies = newList => setMovies(newList);
 

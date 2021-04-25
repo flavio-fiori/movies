@@ -1,21 +1,21 @@
-import { Divider, Table as ChakraTable, Tbody, Td, Th, Thead, Tr, Tfoot, Icon, Flex, Box, Image } from '@chakra-ui/react';
+import { Divider, Table as ChakraTable, Tbody, Td, Th, Thead, Tr, Tfoot, Icon, Flex, Box, Image, Text } from '@chakra-ui/react';
 import { Fragment } from 'react';
-import { RiMovie2Line } from 'react-icons/ri';
+import { RiErrorWarningLine, RiMovie2Line } from 'react-icons/ri';
 
 import { useMovies } from '../hooks/useMovies';
 
 export function Table() {
 
     const { movies } = useMovies();
+    const { moviesByYear, total } = movies;
 
     return (
         <Fragment>
             
             {
-                movies.length > 0 && 
+                moviesByYear?.length > 0 && ( 
 
-
-                <Fragment>                    
+                    <Fragment>                    
 
                     <Divider marginY={[6, 6, 8]} borderColor="gray.400" />
 
@@ -48,7 +48,7 @@ export function Table() {
                         
                                 {
 
-                                    movies.map(movie => (
+                                    moviesByYear.map(movie => (
 
                                         <Tr key={`year-${movie.year}`}>
                                             <Td display={['none', 'table-cell']}><Icon as={ RiMovie2Line } /></Td>
@@ -64,7 +64,7 @@ export function Table() {
 
                             <Tfoot>
                                 <Tr>
-                                    <Td colSpan="3" textAlign="center">Total: {movies.total}</Td>
+                                    <Td colSpan="3" textAlign="center">Total: { total }</Td>
                                 </Tr>
                             </Tfoot>
 
@@ -73,7 +73,26 @@ export function Table() {
                     </Flex>
                     
                 </Fragment>
-            
+                
+                )
+
+            }
+
+            {
+                total === 0 && (
+
+                    <Text
+                        color="red.500"
+                        marginTop="8"
+                        fontSize="24"
+                    >
+                        <Icon 
+                            marginRight="2"
+                            as={ RiErrorWarningLine } />
+                        Termo de busca não encontrada
+                    </Text>    
+
+                )
             }
             
         </Fragment>

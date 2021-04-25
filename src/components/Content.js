@@ -26,7 +26,7 @@ export function Content() {
                 <Form />
 
                 <Table />
-
+                
             </Box>
 
         </MoviesProvider>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { Box, Divider, Heading, HStack, Input, Button, FormControl, FormHelperText } from '@chakra-ui/react';
 
-import { Box, Divider, Heading, HStack, Input, Button } from '@chakra-ui/react';
 import { api } from '../service/api';
 import { useMovies } from '../hooks/useMovies';
 
@@ -8,20 +8,27 @@ export function Form() {
 
     const [titleMovie, setTitleMovie] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(false);
 
     const { saveMovies } = useMovies();
 
     const handleSubmit = async () => {
-
+        
+        if(0 >= titleMovie.length) {
+            setError(true);
+            return;
+        }
+        
+        setError(false);
         setIsLoading(true);
 
         const response = await api(`/movies/count?Title=${titleMovie}`);
 
-        setIsLoading(false)
+        setIsLoading(false);
 
-        const { moviesByYear } = response.data;
+        const { moviesByYear, total } = response.data;
 
-        saveMovies([...moviesByYear]);
+        saveMovies({ moviesByYear, total });
 
     };
 
@@ -38,13 +45,20 @@ export function Form() {
 
             <Divider marginY="8" borderColor="gray.400" />
 
-            <HStack spacing="4">
+            <HStack spacing="4" alignItems="flex-start">
 
-                <Input
-                    onChange={ event => setTitleMovie(event.target.value)}
-                    borderColor="gray.400"
-                    variant="outline" 
-                    placeholder="Título desejado..." />
+                <FormControl>
+
+                    <Input
+                        isInvalid={error}
+                        onChange={ event => setTitleMovie(event.target.value)}
+                        borderColor="gray.400"
+                        variant="outline" 
+                        placeholder="Título desejado..." />
+
+                    <FormHelperText>* Campo obrigatório</FormHelperText>
+
+                </FormControl>
 
                 {
                     !isLoading ? (
