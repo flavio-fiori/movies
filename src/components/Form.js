@@ -12,11 +12,13 @@ export function Form() {
 
     const { saveMovies } = useMovies();
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (event) => {
+
+        event.preventDefault();
         
         if(0 >= titleMovie.length) {
             setError(true);
-            return;
+            return false;
         }
         
         setError(false);
