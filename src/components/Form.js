@@ -45,7 +45,7 @@ export function Form() {
 
             <Divider marginY="8" borderColor="gray.400" />
 
-            <HStack spacing="4" alignItems="flex-start">
+            <HStack as="form" spacing="4" alignItems="flex-start">
 
                 <FormControl>
 
